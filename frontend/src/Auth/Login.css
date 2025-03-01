@@ -1,0 +1,113 @@
+/* login.css */
+
+/* Section container */
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../assets/authBackground.svg'); /* Add your background image */
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Form styling */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 340px;
+
+  }
+  
+  /* Logo styling */
+  .login-logo {
+    margin-bottom: 2rem;
+  }
+  
+  /* Input containers */
+  .input-container {
+    width: 100%;
+    height: 2.75rem;
+    border-radius: 0.625rem;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    gap: 1.25rem;
+    border: 1px solid #FF6F61; /* Main border color */
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Input fields */
+  .input-field {
+    background-color: transparent;
+    height: 100%;
+    outline: none;
+    border: none;
+color: black;
+    flex: 1;
+
+  }
+  .input-field::placeholder {
+    color: #FF6F61; /* Main placeholder color */
+  }
+  /* Submit button */
+  .submit-btn {
+    background-color: #FF6F61; /* Main background color */
+    color: black;
+    height: 3.5rem;
+    font-size: 1.125rem;
+    border-radius: 0.625rem;
+    width: 100%;
+    margin-top: 1.25rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:disabled {
+    background-color: #d4d4d4;
+    cursor: not-allowed;
+  }
+  
+  .submit-btn:hover:not(:disabled) {
+    background-color: #ff4e42;
+  }
+  
+  /* Signup link styling */
+  .signup-text {
+    font-size: 0.875rem;
+    color: #FF6F61; /* Set the color to the same as the link color */
+    text-align: center; /* Center the text horizontally */
+    width: 100%; /* Ensure it takes up the full width of the parent */
+    margin-top: 0.75rem; /* Adjust the spacing */
+  }
+  .signup-text h1{
+    font-size: 0.875rem;
+    color: #FF6F61; /* Set the color to the same as the link color */
+    text-align: center; /* Center the text horizontally */
+    width: 100%; /* Ensure it takes up the full width of the parent */
+    margin-top: 0.75rem; /* Adjust the spacing */
+  }
+  
+  .signup-link {
+    color: #FF6F61; /* Color for the link text */
+    text-decoration: none;
+  }
+  .signup-text-link{
+    font-size: 0.875rem;
+    color: #FF6F61; /* Set the color to the same as the link color */
+    text-align: center; /* Center the text horizontally */
+    width: 100%; /* Ensure it takes up the full width of the parent */
+    margin-top: 0.75rem; /* Adjust the spacing */
+  }
+  
+  .signup-link:hover {
+    text-decoration: underline; /* Underline the link on hover */
+  }
+  
+  
+  .signup-text:hover {
+    text-decoration: underline;
+  }
+  

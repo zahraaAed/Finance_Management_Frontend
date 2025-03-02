@@ -1,0 +1,215 @@
+/* Sidebar */
+.sidebar {
+  background-color: #1b2028;
+  height: 100vh;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  transition: all 0.3s ease;
+  position: fixed; /* Make the sidebar fixed on the left */
+  left: 0;
+
+  
+  top: 0;
+}
+
+/* Sidebar Header (Logo and Title) */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  justify-content: flex-start;
+  text-decoration: none;
+
+ 
+}
+.sidebar-logo-text{
+  color:white;
+  font-size: 30px;
+  text-align: left;
+  text-decoration: none;
+  font-weight: bold;
+
+}
+.sidebar-list{
+  margin: 0;
+  padding: 0;
+}
+
+.burger-btn {
+  display: none; /* Hidden by default on desktop */
+  font-size: 30px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 50%; /* Center it */
+  transform: translateX(-50%); /* Adjust for perfect centering */
+}
+/* Sidebar Links Container */
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: flex-start; /* Align items to the left */
+  justify-content: flex-start; /* Align items at the top */
+  
+}
+
+/* Sidebar Link Item */
+.sidebar-item {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align icon and text to the left */
+  color: #f5f5f5;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+  cursor: pointer;
+  margin-bottom: 10px; /* Reduced space between sidebar items */
+  padding: 8px 10px; /* Adjusted padding */
+
+}
+
+/* Sidebar Item Hover */
+.sidebar-item:hover {
+  background-color: #f5f5f5;
+  color: #1b2028;
+  width: 100%;
+}
+
+/* Icon inside Sidebar Item */
+.sidebar-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+/* Arrow Rotation for Dropdowns */
+.sidebar-item.active .sidebar-arrow {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* Sidebar Dropdown Menu */
+.dropdown {
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+  display: none;
+  flex-direction: column; /* Make the dropdown items stack vertically */
+}
+
+/* Display dropdown when active */
+.sidebar-item.active .dropdown {
+  display: flex;
+  flex-direction: column;
+  color: blue 
+}
+
+/* Remove extra space between dropdown list items */
+.dropdown li {
+  margin: 0;
+ 
+  padding: 5px 0; /* Adjusted padding */
+  line-height: 1; /* Reduced line height */
+}
+
+/* Remove extra margin between links */
+.dropdown a {
+  display: block;
+  padding: 5px 10px; /* Adjusted padding */
+  text-decoration: none;
+  color: blue;
+}
+
+
+/* Arrow for Dropdown */
+.sidebar-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+
+
+/* Default mobile state - only icons */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px; /* Narrow sidebar */
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align everything to the left */
+    transition: width 0.3s ease;
+  }
+
+  /* Expand when mobile menu is open */
+  .sidebar.mobile-open {
+    width: 200px;
+  }
+
+  /* Hide sidebar header text */
+  .sidebar-header .sidebar-logo-text {
+    display: none;
+  }
+
+  /* Burger button is always visible and aligned left */
+  .burger-btn {
+  
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px 0 10px 10px; 
+    text-align: right;
+  
+      display: block; /* Show on mobile */
+      top: 10px;
+    }
+  
+
+  /* Hide text labels and items by default */
+  .sidebar-text,
+  .sidebar-item span:not(.sidebar-icon) {
+    display: none;
+  }
+
+  /* Sidebar items - align to left */
+  .sidebar-item {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center;
+    width: 100%;
+    padding: 10px 0 10px 10px; /* Ensure proper spacing */
+  }
+
+  /* Align icons to the left */
+  .sidebar-icon {
+    margin: 0; /* Remove margins for proper alignment */
+  }
+
+  /* Expand sidebar when hovered */
+  .sidebar:hover {
+    width: 200px; /* Expand sidebar */
+  }
+
+  .sidebar:hover .sidebar-text,
+  .sidebar:hover .sidebar-item span:not(.sidebar-icon) {
+    display: inline; /* Show text */
+  }
+
+  .sidebar.mobile-open .burger-btn {
+    left: auto;
+    right: 10px; /* Align to right */
+    transform: none; /* Remove centering */
+  }
+
+}
+
+

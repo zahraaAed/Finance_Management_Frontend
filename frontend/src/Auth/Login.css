@@ -4,26 +4,28 @@
 .login-container {
     width: 100vw;
     height: 100vh;
-    background-image: url('../assets/authBackground.svg'); /* Add your background image */
+    background-image: url('../assets/back.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+  
   }
   
   /* Form styling */
   .login-form {
+    margin-top: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
     
-    width: 340px;
+    width: 30%;
 
   }
   
   /* Logo styling */
-  .login-logo {
+  .login-logo svg {
     margin-bottom: 2rem;
   }
   
@@ -36,7 +38,7 @@
     align-items: center;
     padding: 0.75rem;
     gap: 1.25rem;
-    border: 1px solid #FF6F61; /* Main border color */
+    border: 1px solid #f4d03f ; /* Main border color */
     margin-bottom: 1.25rem;
   }
   
@@ -51,11 +53,11 @@ color: black;
 
   }
   .input-field::placeholder {
-    color: #FF6F61; /* Main placeholder color */
+    color: #f4d03f ; /* Main placeholder color */
   }
   /* Submit button */
   .submit-btn {
-    background-color: #FF6F61; /* Main background color */
+    background-color: #f4d03f ; /* Main background color */
     color: black;
     height: 3.5rem;
     font-size: 1.125rem;
@@ -71,32 +73,32 @@ color: black;
   }
   
   .submit-btn:hover:not(:disabled) {
-    background-color: #ff4e42;
+    background-color: #8a98a4;
   }
   
   /* Signup link styling */
   .signup-text {
     font-size: 0.875rem;
-    color: #FF6F61; /* Set the color to the same as the link color */
+    color: #f4d03f ; /* Set the color to the same as the link color */
     text-align: center; /* Center the text horizontally */
     width: 100%; /* Ensure it takes up the full width of the parent */
     margin-top: 0.75rem; /* Adjust the spacing */
   }
   .signup-text h1{
     font-size: 0.875rem;
-    color: #FF6F61; /* Set the color to the same as the link color */
+    color: #f4d03f ; /* Set the color to the same as the link color */
     text-align: center; /* Center the text horizontally */
     width: 100%; /* Ensure it takes up the full width of the parent */
     margin-top: 0.75rem; /* Adjust the spacing */
   }
   
   .signup-link {
-    color: #FF6F61; /* Color for the link text */
+    color: #f4d03f ; /* Color for the link text */
     text-decoration: none;
   }
   .signup-text-link{
     font-size: 0.875rem;
-    color: #FF6F61; /* Set the color to the same as the link color */
+    color: #f4d03f ; /* Set the color to the same as the link color */
     text-align: center; /* Center the text horizontally */
     width: 100%; /* Ensure it takes up the full width of the parent */
     margin-top: 0.75rem; /* Adjust the spacing */
@@ -110,4 +112,66 @@ color: black;
   .signup-text:hover {
     text-decoration: underline;
   }
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1024px) {
+  .login-form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-form {
+    width: 70%;
+    padding: 16px;
+  }
+
+  .login-logo svg {
+    width: 80px;
+    margin-bottom: 1rem;
+  }
+
+  .input-container {
+    height: 40px;
+  }
+
+  .submit-btn {
+    font-size: 16px;
+    height: 44px;
+  }
+
+  .signup-text,
+  .signup-text h1,
+  .signup-text-link {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    width: 85%;
+    padding: 12px;
+  }
+
+  .login-logo svg {
+    width: 70px;
+    margin-bottom: 0.75rem;
+  }
+
+  .input-container {
+    padding: 0.5rem;
+    height: 38px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .signup-text,
+  .signup-text h1,
+  .signup-text-link {
+    font-size: 12px;
+  }
+}
   

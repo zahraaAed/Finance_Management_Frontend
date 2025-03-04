@@ -4,6 +4,7 @@ import Login from './Auth/Login';
 import Signup from './Auth/Signup';
 import LoginSuperAdmin from './Auth/LoginSuperAdmin';
 import SideBar from './Components/Sidebar';
+import FixedIncomes from './Components/fixedincome';
 
 const App = () => {
   return (
@@ -14,6 +15,8 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/loginSuperAdmin" element={<LoginSuperAdmin />} />
           <Route path="/sidebar" element={<SideBar />} />
+          <Route path="/sidebar/income/fixed" element={<FixedIncomes/>} />
+
         </Routes>
       </div>
     </Router>

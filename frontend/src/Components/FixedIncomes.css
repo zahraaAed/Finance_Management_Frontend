@@ -1,0 +1,68 @@
+.fixed-incomes-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fixed-incomes-container h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .fixed-incomes-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .fixed-income-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fixed-income-item h3 {
+    margin: 0;
+    color: #444;
+  }
+  
+  .fixed-income-item p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .delete-btn, .update-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+  }
+  
+  .delete-btn {
+    background: #e74c3c;
+    color: #fff;
+    margin-right: 8px;
+  }
+  
+  .delete-btn:hover {
+    background: #c0392b;
+  }
+  
+  .update-btn {
+    background: #3498db;
+    color: #fff;
+  }
+  
+  .update-btn:hover {
+    background: #2980b9;
+  }
+  

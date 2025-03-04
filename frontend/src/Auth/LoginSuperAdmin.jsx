@@ -27,8 +27,13 @@ const LoginSuperAdmin = () => {
 
     try {
       const response = await axios.post('http://localhost:4000/api/login/signin/superadmin', formData);
+      console.log("Login response:", response.data); 
+     
+      localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("role", response.data.role); 
+    
       toast.success('Login successful');
-      navigate('/dashboard'); // Redirect to the dashboard or home page after successful login
+      navigate('/users'); // Redirect to the dashboard or home page after successful login
     } catch (error) {
       toast.error('Invalid email or password');
     } finally {

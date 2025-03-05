@@ -48,7 +48,7 @@ const Sidebar = () => {
           <li className="sidebar-item">
             <span>
             <FontAwesomeIcon icon={faChartBar} className="sidebar-icon" />
-              <span>Reports</span>
+             <Link to="/report"> <span>Reports</span></Link>
             </span>
           </li>
 

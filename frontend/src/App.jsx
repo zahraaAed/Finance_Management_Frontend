@@ -6,6 +6,8 @@ import LoginSuperAdmin from './Auth/LoginSuperAdmin';
 import Users from './Pages/Users';
 import SidebarLayout from './Components/sideBarLayout';
 import ReportChart from './Pages/ReportChart';
+import FixedIncomes from './Components/fixedincome';
+import CategoryManager from './Components/category';
 
 const App = () => {
   return (
@@ -18,6 +20,9 @@ const App = () => {
           <Route element={<SidebarLayout />}>
             <Route path="/users" element={<Users />} />
             <Route path='/report' element={<ReportChart/>}/>
+            <Route path='/fixedincome' element={<FixedIncomes/>}/>
+            <Route path='/categories' element={<CategoryManager/>}/>
+
           </Route>
         </Routes>
         

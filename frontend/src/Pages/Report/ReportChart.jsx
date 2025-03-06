@@ -82,24 +82,61 @@ export default function ReportComponent() {
   });
   console.log('Grouped Transactions:', groupedTransactions);
 
-  // Prepare chart data
+
+
+  // Group transactions by date (can also be grouped by Month/Year)
+  const groupedByDate = {};
+
+  // Set the minimum starting date
+  const minStartDate = new Date("2025-01-01");
+  
+  // Group transactions by date (exclude invalid and old dates)
+  transactions.forEach(transaction => {
+    const date = new Date(transaction.startDate);
+    
+    // Ignore invalid or old dates (before 2025-01-01)
+    if (isNaN(date) || date < minStartDate) return;
+  
+    const formattedDate = date.toISOString().split('T')[0]; // YYYY-MM-DD format
+  
+    if (!groupedByDate[formattedDate]) {
+      groupedByDate[formattedDate] = { income: 0, expense: 0 };
+    }
+  
+    if (transaction.transaction_type === "income") {
+      groupedByDate[formattedDate].income += transaction.amount;
+    } else {
+      groupedByDate[formattedDate].expense += transaction.amount;
+    }
+  });
+  
+  // Sort the dates in ascending order
+  const sortedDates = Object.keys(groupedByDate).sort((a, b) => new Date(a) - new Date(b));
+  
+  // Prepare data for the Line Chart
   const lineChartData = {
-    labels: reports.map(report => safeDate(report.startDate)), // X-Axis (Date)
+    labels: sortedDates, // Dates sorted in ascending order
     datasets: [
       {
         label: "Total Income",
-        data: Object.values(groupedTransactions).map(item => item.income),
+        data: sortedDates.map(date => groupedByDate[date].income || 0), // Map income values
         borderColor: "blue",
         borderWidth: 2,
+        fill: false,
       },
       {
         label: "Total Expenses",
-        data: Object.values(groupedTransactions).map(item => item.expense),
+        data: sortedDates.map(date => groupedByDate[date].expense || 0), // Map expense values
         borderColor: "red",
         borderWidth: 2,
+        fill: false,
       }
     ]
   };
+  
+  // Render the Line Chart
+  <Line data={lineChartData} />
+  
 
   const barChartData = {
     labels: Object.keys(groupedTransactions), // X-Axis (Profit Goal Names)

@@ -27,6 +27,8 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:4000/api/login/signin', formData);
+      console.log("Login response:", response.data); 
+      localStorage.setItem("token", response.data.accessToken);
       toast.success('Login successful');
       navigate('/dashboard'); // Redirect to the dashboard or home page after successful login
     } catch (error) {

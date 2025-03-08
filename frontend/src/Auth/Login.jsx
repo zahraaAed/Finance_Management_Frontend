@@ -26,7 +26,11 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:4000/api/login/signin', formData);
+      const response = await axios.post('http://localhost:4001/api/login/signin', formData);
+      console.log("Login response:", response.data); 
+      localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("userEmail", response.data.email);
+
       toast.success('Login successful');
       navigate('/dashboard'); // Redirect to the dashboard or home page after successful login
     } catch (error) {
@@ -40,7 +44,7 @@ const Login = () => {
     <>
       <ToastContainer
         position="top-left"
-        autoClose={4000}
+        autoClose={4001}
         limit={4}
         hideProgressBar={false}
         newestOnTop={false}

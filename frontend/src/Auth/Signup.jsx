@@ -28,7 +28,7 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:4000/api/login/createUser", formData);
+      const response = await axios.post("http://localhost:4001/api/login/createUser", formData);
       toast.success('Account created successfully');
       navigate('/login');  // Redirect to login page after successful signup
     } catch (error) {
@@ -42,7 +42,7 @@ const Signup = () => {
     <>
       <ToastContainer
         position="top-left"
-        autoClose={4000}
+        autoClose={4001}
         limit={4}
         hideProgressBar={false}
         newestOnTop={false}

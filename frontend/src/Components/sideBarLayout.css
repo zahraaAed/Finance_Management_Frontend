@@ -2,27 +2,27 @@
 .content {
     flex-grow: 1;
     padding: 20px;
-    margin-left: 250px; /* Default sidebar width */
+    margin-left: 300px;/* Default sidebar width */
   }
   
   /* Reduce margin for tablets */
   @media (max-width: 1024px) {
     .content {
-      margin-left: 200px;
+      margin-left: 250px;
     }
   }
   
   /* Further reduce margin for mobile screens */
   @media (max-width: 768px) {
     .content {
-      margin-left: 150px;
+      margin-left: 250px;
     }
   }
   
   /* On very small screens, make sidebar collapsible */
   @media (max-width: 480px) {
     .content {
-      margin-left: 50px; /* Sidebar should be hidden or toggleable */
+      margin-left: 60px; /* Sidebar should be hidden or toggleable */
     }
   }
   

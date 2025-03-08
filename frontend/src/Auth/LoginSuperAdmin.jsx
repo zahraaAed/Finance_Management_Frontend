@@ -26,11 +26,13 @@ const LoginSuperAdmin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:4000/api/login/signin/superadmin', formData);
+      const response = await axios.post('http://localhost:4001/api/login/signin/superadmin', formData);
       console.log("Login response:", response.data); 
      
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("role", response.data.role); 
+      localStorage.setItem("userEmail", response.data.email);
+
     
       toast.success('Login successful');
       navigate('/users'); // Redirect to the dashboard or home page after successful login
@@ -45,7 +47,7 @@ const LoginSuperAdmin = () => {
     <>
       <ToastContainer
         position="top-left"
-        autoClose={4000}
+        autoClose={4001}
         limit={4}
         hideProgressBar={false}
         newestOnTop={false}

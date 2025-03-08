@@ -1,0 +1,125 @@
+/* Goal Table Container */
+.goal-title{
+  
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-top: 40px;
+}
+
+
+.goal-container {
+  width: 90%;
+ 
+
+  border-radius: 10px;
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 40px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.table th, 
+.table td {
+  padding: 10px;
+  text-align: left;
+  border: 2px solid #f4d03f; /* Yellow border */
+}
+
+.table th {
+  background-color: #f4d03f;
+  color: white;
+}
+
+.table td {
+  background-color: #f9f9f9;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Button Styles for Editing/Deleting */
+button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #d9534f;
+}
+
+/* Goal Container with Padding */
+.goal-container {
+  padding-top: 40px;
+}
+
+/* Edit and Delete Icons */
+.delete-icon, .edit-icon {
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 10px;
+  background-color: transparent;
+}
+
+.delete-icon {
+  color: red;
+}
+
+.edit-icon {
+  color: blue;
+}
+
+/* Calendar Icon */
+.calendar-icon {
+  color: gray;
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .table {
+    font-size: 14px;
+  }
+
+  .table th, 
+  .table td {
+    padding: 8px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 5px;
+  }
+}
+
+/* Responsive Styles for Smaller Screens */
+@media (max-width: 480px) {
+  .table {
+    width: 100%;
+    display: block; /* Allows the table to be scrollable horizontally */
+    overflow-x: auto;
+    font-size: 12px;
+  }
+
+  .table th, 
+  .table td {
+    padding: 6px;
+  }
+
+  button {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}

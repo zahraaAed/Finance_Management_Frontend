@@ -5,8 +5,8 @@ import Signup from './Auth/Signup';
 import LoginSuperAdmin from './Auth/LoginSuperAdmin';
 import Users from './Pages/Users/Users';
 import SidebarLayout from './Components/sideBarLayout';
-import FixedIncomes from './Components/fixedincome';
-import CategoryManager from './Components/category';
+import FixedIncomes from './Pages/fixedincome/fixedincome';
+import CategoryManager from './Pages/categories/category';
 import ReportChart from './Pages/Report/ReportChart';
 import Goals from './Pages/ProfitGoals/Goals';
 

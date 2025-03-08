@@ -8,6 +8,7 @@ import SidebarLayout from './Components/sideBarLayout';
 import ReportChart from './Pages/Report/ReportChart';
 import Goals from './Pages/ProfitGoals/Goals';
 
+
 const App = () => {
   return (
     <Router>
@@ -15,11 +16,13 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/loginSuperAdmin" element={<LoginSuperAdmin />} />
+          <Route path="/" element={<LoginSuperAdmin />} />
+          
           <Route element={<SidebarLayout />}>
             <Route path="/users" element={<Users />} />
             <Route path='/report' element={<ReportChart/>}/>
             <Route path='/goals' element={<Goals/>}/>
+      
           </Route>
         </Routes>
         

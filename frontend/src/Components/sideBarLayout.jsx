@@ -7,6 +7,7 @@ const SidebarLayout = () => {
   return (
     <div className="sidebar-layout" style={{ display: 'flex' }}>
       <SideBar /> 
+      
       <div className="content">
         {/* Outlet will render the child route components */}
         <Outlet />

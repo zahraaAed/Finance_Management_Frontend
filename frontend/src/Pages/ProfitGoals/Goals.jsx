@@ -9,6 +9,7 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 import GoalsPagination from '../Pagination';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import ProfitGoalsPieChart from '../../Components/GoalsChart';
 
 
 //importing libraries
@@ -321,6 +322,7 @@ const handleDeleteClick = async (goalId) => {
             ))}
           </tbody>
         </table>
+        <ProfitGoalsPieChart/>
 
         {/* Pagination Component */}
         <GoalsPagination

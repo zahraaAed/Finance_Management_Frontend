@@ -1,6 +1,6 @@
 /* Goal Table Container */
 .goal-title{
-  padding-left: 100px;
+  
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -10,7 +10,7 @@
 
 .goal-container {
   width: 90%;
-  padding-left: 100px;
+ 
 
   border-radius: 10px;
 }

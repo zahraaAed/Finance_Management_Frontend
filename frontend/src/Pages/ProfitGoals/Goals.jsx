@@ -1,7 +1,7 @@
 
 //importing libraries
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './Goals.css';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';

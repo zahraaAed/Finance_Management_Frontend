@@ -87,6 +87,15 @@ const Sidebar = () => {
               </Link>
             </span>
           </li>
+           {/* categories */}
+           <li className="sidebar-item">
+            <span>
+              <FontAwesomeIcon icon={faBullseye} className="sidebar-icon" />
+              <Link to="/categories">
+                <span className="sidebar-content">Categories</span>
+              </Link>
+            </span>
+          </li>
 
           {/* Income Dropdown */}
           <li className={`sidebar-item ${isIncomeOpen ? 'active' : ''}`} onClick={toggleIncomeDropdown}>

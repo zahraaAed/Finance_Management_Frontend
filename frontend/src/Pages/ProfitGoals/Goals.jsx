@@ -137,7 +137,8 @@ export default function Goals() {
   const recurringChartData = [
     { name: "Recurring Income", value: (recurringTotalIncome / recurringTotal) * 100 },
     { name: "Recurring Expense", value: (recurringTotalExpense / recurringTotal) * 100 },
-    { name: "Recurring Goal", value: (goal / recurringTotal) * 100 }
+    { name: "Recurring Goal", value: (goal / recurringTotal) * 100 },
+    { name: "Achievement", value: (achievement / fixedTotal) * 100 }
   ];
 
   // Handle Pagination
@@ -386,27 +387,7 @@ export default function Goals() {
             <th>Actions </th>
           </tr>
           </thead>
-  {/*         <tbody>
-            
-          {paginatedGoals.map((goal, index) => (
-  <tr key={goal.id}>  
-    <td>{goal.goalName}</td>
-    <td>{goal.target} {goal.currency}</td>
-    <td>{goal.actualProfit} {goal.currency}</td>
-    <td>{goal.remainingProfit} {goal.currency}</td>
-    <td>{goal.status}</td>
-    <td>{goal.achievementPercentage}%</td>
-    <td>{goal.averageMonthlyProfit} {goal.currency}</td>
-    <td>{new Date(goal.deadline).toLocaleDateString()}</td>
 
-                <td>
-                
-                  <AiFillEdit className="edit-icon" onClick={() => handleUpdateClick(goal.id)} />
-                  <AiFillDelete className="delete-icon" onClick={() => handleDeleteClick(goal.id)} />
-                </td>
-              </tr>
-            ))}
-          </tbody> */}
           <tbody>
     {filteredGoals.slice(
         (currentPage - 1) * itemsPerPage,
@@ -421,10 +402,14 @@ export default function Goals() {
             <td>{goal.achievementPercentage}%</td>
             <td>{goal.averageMonthlyProfit} {goal.currency}</td>
             <td>{new Date(goal.deadline).toLocaleDateString()}</td>
-            <td>
-                <AiFillEdit className="edit-icon" onClick={() => handleUpdateClick(goal.id)} />
-                <AiFillDelete className="delete-icon" onClick={() => handleDeleteClick(goal.id)} />
-            </td>
+            <td className='buttons'>
+            <button className="edit-button" onClick={() => handleUpdateClick(goal.id)}>
+    Edit
+  </button>
+  <button className="delete-button" onClick={() => handleDeleteClick(goal.id)}>
+    Delete
+  </button>
+  </td>
         </tr>
     ))}
 </tbody>

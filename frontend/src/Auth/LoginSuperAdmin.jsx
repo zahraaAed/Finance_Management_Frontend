@@ -35,7 +35,7 @@ const LoginSuperAdmin = () => {
 
     
       toast.success('Login successful');
-      navigate('/users'); // Redirect to the dashboard or home page after successful login
+      navigate('/dashboard'); // Redirect to the dashboard or home page after successful login
     } catch (error) {
       toast.error('Invalid email or password');
     } finally {

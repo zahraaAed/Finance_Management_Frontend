@@ -1,68 +1,63 @@
 .fixed-incomes-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 25px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .fixed-incomes-container h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .fixed-incomes-container ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .fixed-income-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    margin-bottom: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .fixed-income-item h3 {
-    margin: 0;
-    color: #444;
-  }
-  
-  .fixed-income-item p {
-    margin: 5px 0;
-    color: #666;
-  }
-  
-  .delete-btn, .update-btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease;
-  }
-  
-  .delete-btn {
-    background: #e74c3c;
-    color: #fff;
-    margin-right: 8px;
-  }
-  
-  .delete-btn:hover {
-    background: #c0392b;
-  }
-  
-  .update-btn {
-    background: #3498db;
-    color: #fff;
-  }
-  
-  .update-btn:hover {
-    background: #2980b9;
-  }
-  
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.fixed-incomes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.fixed-incomes-table th, .fixed-incomes-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.fixed-incomes-table th {
+  background-color: #f4f4f4;
+}
+
+.update-btn {
+  background-color: #ffc107;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.popup-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup-form input, .popup-form textarea, .popup-form select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+}

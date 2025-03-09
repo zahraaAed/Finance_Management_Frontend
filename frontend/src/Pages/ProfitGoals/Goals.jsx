@@ -336,7 +336,7 @@ export default function Goals() {
 
       
   return (
-    <div>
+    <div className='goal-container'>
       <div className="goal-title">
         <div className='goal-header'>
         <h1>Profit Goals</h1>
@@ -433,9 +433,9 @@ export default function Goals() {
         <div className="charts">
         {/* Fixed Chart */}
         <div className="chart">
-          <h2>Fixed Income & Expenses</h2>
+       {/*    <h2>Fixed Income & Expenses</h2> */}
           <div className="chart-wrapper">
-          <PieChart width={400} height={400}>
+          <PieChart width={400} height={500}>
   <Pie
     data={fixedChartData} // This should be based on filtered data
     dataKey="value"
@@ -450,7 +450,8 @@ export default function Goals() {
     ))}
   </Pie>
   <Tooltip />
-  <Legend />
+
+  <Legend layout="vertical" align="center" verticalAlign="bottom" wrapperStyle={{ paddingTop: 60 }} />
 </PieChart>
 
 
@@ -459,7 +460,7 @@ export default function Goals() {
 
         {/* Recurring Chart */}
         <div className="chart">
-          <h2>Recurring Income & Expenses</h2>
+   {/*        <h2>Recurring Income & Expenses</h2> */}
           <div className="chart-wrapper">
           <PieChart width={350} height={450}>
   <Pie
@@ -483,20 +484,14 @@ export default function Goals() {
         </div>
       </div>
 
-        {/* Pagination Component */}
-        <GoalsPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-          className="pagination-transactions" // Add your desired class name here
-        />
+ 
       </div>
 
       {/* Modals for Add Goal, Update Goal, Delete Confirmation, Success Message */}
       {/* Add Goal Modal */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Goal</Modal.Title>
+          <Modal.Title className='addGoal'>Add Goal</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={addGoal}>

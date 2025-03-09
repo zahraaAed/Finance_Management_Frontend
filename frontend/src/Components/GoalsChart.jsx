@@ -6,10 +6,10 @@ import "./GoalsChart.css";
 const COLORS = ["#607789", "#1b2028", "#f4d03f", "red"];
 
 const ProfitGoalsPieChart = () => {
-  const [fixedData, setFixedData] = useState([]);
-  const [recurringData, setRecurringData] = useState([]);
+  const [data, setData] = useState([]);
   const [goal, setGoal] = useState(5000);
-  const [filter, setFilter] = useState("monthly");
+  const [timeFilter, setTimeFilter] = useState("monthly");
+  const [goalFilter, setGoalFilter] = useState("all");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,17 +22,22 @@ const ProfitGoalsPieChart = () => {
           axios.get("http://localhost:4001/api/profitGoal/get/all")
         ]);
 
-        setFixedData([
+        let combinedData = [
           ...fixedIncomeRes.data.data.map(item => ({ amount: item.amount, type: "income" })),
-          ...fixedExpenseRes.data.data.map(item => ({ amount: -Math.abs(item.amount), type: "expense" }))
-        ]);
-
-        setRecurringData([
           ...recurringIncomeRes.data.data.map(item => ({ amount: item.amount, type: "income" })),
+          ...fixedExpenseRes.data.data.map(item => ({ amount: -Math.abs(item.amount), type: "expense" })),
           ...recurringExpenseRes.data.data.map(item => ({ amount: -Math.abs(item.amount), type: "expense" }))
-        ]);
+        ];
 
-        const totalGoal = goalRes.data.reduce((sum, goal) => sum + goal.remainingProfit, 0);
+        if (goalFilter !== "all") {
+          combinedData = combinedData.filter(item => item.status?.toLowerCase() === goalFilter);
+        }
+
+        let totalGoal = goalRes.data
+          .filter(g => goalFilter === "all" || g.status.toLowerCase() === goalFilter)
+          .reduce((sum, g) => sum + g.remainingProfit, 0);
+
+        setData(combinedData);
         setGoal(totalGoal || 5000);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -40,11 +45,10 @@ const ProfitGoalsPieChart = () => {
     };
 
     fetchData();
-  }, []);
+  }, [goalFilter, timeFilter]);
 
-  // Filter Data Based on Selection
   const filterData = (data) => {
-    switch (filter) {
+    switch (timeFilter) {
       case "weekly":
         return data.map(d => ({ ...d, amount: d.amount / 4 }));
       case "yearly":
@@ -54,72 +58,44 @@ const ProfitGoalsPieChart = () => {
     }
   };
 
-  const filteredFixedData = filterData(fixedData);
-  const filteredRecurringData = filterData(recurringData);
+  const filteredData = filterData(data);
 
-  // Calculate Totals
-  const fixedTotalIncome = filteredFixedData.filter(d => d.amount > 0).reduce((sum, d) => sum + d.amount, 0);
-  const fixedTotalExpense = filteredFixedData.filter(d => d.amount < 0).reduce((sum, d) => sum + Math.abs(d.amount), 0);
-  const achievement = fixedTotalIncome - fixedTotalExpense;
-  const fixedTotal = fixedTotalIncome + fixedTotalExpense + goal + achievement;
+  const totalIncome = filteredData.filter(d => d.amount > 0).reduce((sum, d) => sum + d.amount, 0);
+  const totalExpense = filteredData.filter(d => d.amount < 0).reduce((sum, d) => sum + Math.abs(d.amount), 0);
+  const achievement = totalIncome - totalExpense;
+  const total = totalIncome + totalExpense + goal + achievement;
 
-  const fixedChartData = [
-    { name: "Fixed Income", value: (fixedTotalIncome / fixedTotal) * 100 },
-    { name: "Fixed Expense", value: (fixedTotalExpense / fixedTotal) * 100 },
-    { name: "Fixed Goal", value: (goal / fixedTotal) * 100 },
-    { name: "Achievement", value: (achievement / fixedTotal) * 100 }
-  ];
-
-  const recurringTotalIncome = filteredRecurringData.filter(d => d.amount > 0).reduce((sum, d) => sum + d.amount, 0);
-  const recurringTotalExpense = filteredRecurringData.filter(d => d.amount < 0).reduce((sum, d) => sum + Math.abs(d.amount), 0);
-  const recurringTotal = recurringTotalIncome + recurringTotalExpense + goal;
-
-  const recurringChartData = [
-    { name: "Recurring Income", value: (recurringTotalIncome / recurringTotal) * 100 },
-    { name: "Recurring Expense", value: (recurringTotalExpense / recurringTotal) * 100 },
-    { name: "Recurring Goal", value: (goal / recurringTotal) * 100 }
+  const chartData = [
+    { name: "Income", value: (totalIncome / total) * 100 },
+    { name: "Expense", value: (totalExpense / total) * 100 },
+    { name: "Goal", value: (goal / total) * 100 },
+    { name: "Achievement", value: (achievement / total) * 100 }
   ];
 
   return (
     <div className="pie-chart-container">
-      {/* Filter Buttons */}
       <div className="filter-buttons">
-        <button onClick={() => setFilter("weekly")} className={filter === "weekly" ? "active" : ""}>Weekly</button>
-        <button onClick={() => setFilter("monthly")} className={filter === "monthly" ? "active" : ""}>Monthly</button>
-        <button onClick={() => setFilter("yearly")} className={filter === "yearly" ? "active" : ""}>Yearly</button>
+        <button onClick={() => setTimeFilter("weekly")} className={timeFilter === "weekly" ? "active" : ""}>Weekly</button>
+        <button onClick={() => setTimeFilter("monthly")} className={timeFilter === "monthly" ? "active" : ""}>Monthly</button>
+        <button onClick={() => setTimeFilter("yearly")} className={timeFilter === "yearly" ? "active" : ""}>Yearly</button>
       </div>
 
-      {/* Pie Charts in Row */}
-      <div className="charts">
-        {/* Fixed Chart */}
-        <div className="chart">
-          <h2>Fixed Income & Expenses</h2>
-          <div className="chart-wrapper">
-          <PieChart width={350} height={450} margin={{top:50}}>
-            <Pie data={fixedChartData} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value" label>
-              {fixedChartData.map((_, index) => <Cell key={`cell-${index}`} fill={COLORS[index]} />)}
-            </Pie>
-            <Tooltip />
-         
-            <Legend layout="vertical" align="center" verticalAlign="bottom" wrapperStyle={{ paddingTop: 60}}/>
-          </PieChart>
-          </div>
-        </div>
+      <div className="goal-filter-buttons">
+        <button onClick={() => setGoalFilter("all")} className={goalFilter === "all" ? "active" : ""}>All</button>
+        <button onClick={() => setGoalFilter("achieved")} className={goalFilter === "achieved" ? "active" : ""}>Achieved</button>
+        <button onClick={() => setGoalFilter("missed")} className={goalFilter === "missed" ? "active" : ""}>Missed</button>
+        <button onClick={() => setGoalFilter("pending")} className={goalFilter === "pending" ? "active" : ""}>Pending</button>
+      </div>
 
-        {/* Recurring Chart */}
-        <div className="chart">
-          <h2>Recurring Income & Expenses</h2>
-          <div className="chart-wrapper">
-          <PieChart width={350} height={450}>
-            <Pie data={recurringChartData} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value" label>
-              {recurringChartData.map((_, index) => <Cell key={`cell-${index}`} fill={COLORS[index]} />)}
-            </Pie>
-            <Tooltip />
-            <Legend layout="vertical" align="center" verticalAlign="bottom" wrapperStyle={{ paddingTop:60}}/>
-          
-          </PieChart>
-          </div>
-        </div>
+      <div className="chart">
+        <h2>Income & Expenses</h2>
+        <PieChart width={350} height={450} margin={{ top: 50 }}>
+          <Pie data={chartData} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value" label>
+            {chartData.map((_, index) => <Cell key={`cell-${index}`} fill={COLORS[index]} />)}
+          </Pie>
+          <Tooltip />
+          <Legend layout="vertical" align="center" verticalAlign="bottom" wrapperStyle={{ paddingTop: 60 }} />
+        </PieChart>
       </div>
     </div>
   );

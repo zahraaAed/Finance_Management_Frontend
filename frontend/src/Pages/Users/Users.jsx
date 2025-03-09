@@ -95,12 +95,13 @@ const UserTable = () => {
 
   return (
     <div className="user-container">
+      <div className="user-title">
       <h1>Admin Users</h1>
       
-      <Button className="goal-button" variant="primary" onClick={handleShowModal}>
+      <Button className="user-button" variant="primary" onClick={handleShowModal}>
         Add Admin
       </Button>
-
+</div>
       <table className="user-table">
         <thead>
           <tr>

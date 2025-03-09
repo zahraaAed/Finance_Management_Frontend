@@ -7,6 +7,7 @@ import Users from './Pages/Users/Users';
 import SidebarLayout from './Components/sideBarLayout';
 import ReportChart from './Pages/Report/ReportChart';
 import Goals from './Pages/ProfitGoals/Goals';
+import ProfitGoalsPieChart from './Components/GoalsChart';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/users" element={<Users />} />
             <Route path='/report' element={<ReportChart/>}/>
             <Route path='/goals' element={<Goals/>}/>
+            <Route path='/chart' element={<ProfitGoalsPieChart/>}/>
       
           </Route>
         </Routes>

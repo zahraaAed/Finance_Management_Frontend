@@ -20,7 +20,7 @@ const FixedIncomes = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4001/api/fixed-incomes/${id}`);
+      await axios.delete(`http://localhost:4001/api/fixedIncome/fixed-incomes/${id}`);
       setFixedIncomes(fixedIncomes.filter((income) => income.id !== id));
     } catch (error) {
       console.error("Error deleting fixed income:", error);

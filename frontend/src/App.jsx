@@ -9,6 +9,7 @@ import FixedIncomes from './Pages/fixedincome/fixedincome';
 import CategoryManager from './Pages/categories/category';
 import ReportChart from './Pages/Report/ReportChart';
 import Goals from './Pages/ProfitGoals/Goals';
+import ProfitGoalsPieChart from './Components/GoalsChart';
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
             <Route path='/fixedincome' element={<FixedIncomes/>}/>
             <Route path='/categories' element={<CategoryManager/>}/>
             <Route path='/goals' element={<Goals/>}/>
+            <Route path='/chart' element={<ProfitGoalsPieChart/>}/>
       
           </Route>
         </Routes>

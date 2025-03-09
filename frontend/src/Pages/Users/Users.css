@@ -12,6 +12,18 @@
     padding-top: 40px;
 
   }
+  .user-title{
+  
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: #607789;
+
+  }
+  .user-button{
+
+    width: 100px;
+  }
   .user-table th,
   .user-table td {
     padding: 10px;

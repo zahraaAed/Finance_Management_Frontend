@@ -156,9 +156,10 @@ export default function ReportComponent() {
 
   return (
     <div className="Report-Container">
-      <h2>Reports Overview</h2>
+      <h1>Reports Overview</h1>
       {loading ? <p>Loading...</p> : (
         <>
+        <div className='chart-section'>
           <div className="chart-container">
             <h3>Income & Expense Over Time</h3>
             <Line data={lineChartData} />
@@ -168,7 +169,7 @@ export default function ReportComponent() {
             <h3>Profit Goal Comparisons</h3>
             <Bar data={barChartData} />
           </div>
-
+</div>
           <div className="table-container">
             <h3>Detailed Transactions</h3>
             <table className='transaction-table'>

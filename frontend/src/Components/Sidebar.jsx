@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUser, faChartBar, faBullseye, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faUser, faChartBar, faBullseye, faArrowUp, faArrowDown,faList } from '@fortawesome/free-solid-svg-icons';
 import './Sidebar.css';
 
 const Sidebar = () => {
@@ -90,7 +90,7 @@ const Sidebar = () => {
            {/* categories */}
            <li className="sidebar-item">
             <span>
-              <FontAwesomeIcon icon={faBullseye} className="sidebar-icon" />
+              <FontAwesomeIcon icon={faList} className="sidebar-icon" />
               <Link to="/categories">
                 <span className="sidebar-content">Categories</span>
               </Link>

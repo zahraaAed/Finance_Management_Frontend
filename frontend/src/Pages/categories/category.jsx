@@ -49,7 +49,7 @@ const CategoryManager = () => {
 
         try {
             const response = await axios.put(
-                `http://localhost:4000/api/categories/${editingCategory.id}/name`, 
+                `http://localhost:4001/api/category/categories/${editingCategory.id}/name`, 
                 { name }
             );
 
@@ -66,8 +66,9 @@ const CategoryManager = () => {
 
     // Delete a category
     const handleDeleteCategory = async (id) => {
+        console.log("Delete button clicked for category ID:", id);  // Debugging line
         try {
-            await axios.delete(`http://localhost:4000/api/category/categories/${id}`);
+            await axios.delete(`http://localhost:4001/api/category/categories/${id}`);
             setCategories(categories.filter(cat => cat.id !== id));
         } catch (error) {
             console.error("Error deleting category:", error);
@@ -76,6 +77,7 @@ const CategoryManager = () => {
 
     // Handle edit click
     const handleEditClick = (category) => {
+        console.log("Edit button clicked for category:", category);  // Debugging line
         setEditingCategory(category);
         setName(category.name);
     };
@@ -93,9 +95,9 @@ const CategoryManager = () => {
                     onChange={(e) => setName(e.target.value)}
                 />
                 {editingCategory ? (
-                    <button onClick={handleUpdateCategory}>Update Category</button>
+                    <button className="btn-au" onClick={handleUpdateCategory}>Update Category</button>
                 ) : (
-                    <button onClick={handleAddCategory}>Add Category</button>
+                    <button className="btn-au" onClick={handleAddCategory}>Add Category</button>
                 )}
             </div>
 
@@ -104,8 +106,8 @@ const CategoryManager = () => {
                 {categories.map((category) => (
                     <li key={category.id}>
                         <span>{category.name}</span>
-                        <button className=".edit-btn" onClick={() => handleEditClick(category)}>Edit</button>
-                        <button className=".delete-btn" onClick={() => handleDeleteCategory(category.id)}>Delete</button>
+                        <button className="edit-btn" onClick={() => handleEditClick(category)}>Edit</button>
+                        <button className="delete-btn" onClick={() => handleDeleteCategory(category.id)}>Delete</button>
                     </li>
                 ))}
             </ul>

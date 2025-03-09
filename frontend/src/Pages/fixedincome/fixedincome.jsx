@@ -11,7 +11,7 @@ const FixedIncomes = () => {
 
   const fetchFixedIncomes = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/fixed-incomes");
+      const response = await axios.get("http://localhost:4001/api/fixedIncome/fixed-incomes");
       setFixedIncomes(response.data.data); // Fix: Extract data correctly
     } catch (error) {
       console.error("Error fetching fixed incomes:", error);
@@ -20,7 +20,7 @@ const FixedIncomes = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/fixed-incomes/${id}`);
+      await axios.delete(`http://localhost:4001/api/fixed-incomes/${id}`);
       setFixedIncomes(fixedIncomes.filter((income) => income.id !== id));
     } catch (error) {
       console.error("Error deleting fixed income:", error);

@@ -30,7 +30,7 @@ h2 {
 }
 
 .category-form input:focus {
-    border-color: #a1c4fd;
+    border-color: #f4d03f;
 }
 
 button {
@@ -41,6 +41,13 @@ button {
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
 }
+.btn-au{
+    background:#f4d03f;
+}
+.btn-au:hover {
+    background:#f4d03fb9;
+    
+}
 
 button:hover {
     transform: scale(1.05);
@@ -48,21 +55,21 @@ button:hover {
 
 /* Soft-colored buttons */
 .edit-btn {
-    background: #a1c4fd;
+    background: #607789;
     color: white;
 }
 
 .edit-btn:hover {
-    background: #84b3f9;
+    background: #6586a0;
 }
 
 .delete-btn {
-    background: #ffb6b9;
+    background: #f95c5e;
     color: white;
 }
 
 .delete-btn:hover {
-    background: #ff7b7e;
+    background: #f95c5eab;
 }
 
 .category-list {

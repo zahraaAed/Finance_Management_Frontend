@@ -1,0 +1,134 @@
+.fixed-expenses-container {
+    padding-top: 40px;
+    text-align: left;
+  }
+  
+  .fixed-expenses-title {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: #607789;
+  }
+  
+  .fixed-expenses-title h1 {
+    margin-bottom: 20px;
+  }
+  
+  .add-btn {
+    width: 150px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .fixed-expenses-table {
+    width: 90%;
+    margin: 40px 0;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fixed-expenses-table th, .fixed-expenses-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  .fixed-expenses-table th {
+    background-color: #f4d03f;
+    color: white;
+  }
+  
+  .fixed-expenses-table td {
+    background-color: #f9f9f9;
+    white-space: nowrap; /* Prevent buttons from wrapping */
+  }
+  
+  /* Add spacing between buttons */
+  .fixed-expenses-table td button {
+    margin-right: 8px; /* Space between buttons */
+    display: inline-block; /* Ensure they stay in line */
+  }
+  
+  .fixed-expenses-table td button:last-child {
+    margin-right: 0; /* Remove margin for last button */
+  }
+  
+  .fixed-expenses-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .update-btn {
+    background-color: #ffc107;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .popup-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .popup-form input,
+  .popup-form textarea,
+  .popup-form select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+  }
+  
+  button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #d9534f;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .fixed-expenses-table {
+      font-size: 14px;
+    }
+  
+    .fixed-expenses-table th,
+    .fixed-expenses-table td {
+      padding: 8px;
+    }
+  
+    .add-btn {
+      width: 120px;
+    }
+  
+    .fixed-expenses-table td button {
+      display: block; /* Stack buttons on smaller screens */
+      width: 100%;
+      margin: 5px 0;
+    }
+  }
+  

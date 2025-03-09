@@ -1,32 +1,64 @@
 .fixed-incomes-container {
-  width: 80%;
-  margin: auto;
-  text-align: center;
+  padding-top: 40px;
+  text-align: left;
+}
+
+.fixed-incomes-title {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #607789;
+}
+
+.fixed-incomes-title h1 {
+  margin-bottom: 20px;
 }
 
 .add-btn {
-  background-color: #28a745;
+  width: 150px;
+  background-color: #4CAF50;
   color: white;
-  padding: 10px 15px;
+  padding: 10px;
   border: none;
   cursor: pointer;
   font-size: 16px;
-  margin-bottom: 10px;
 }
 
 .fixed-incomes-table {
-  width: 100%;
+  width: 90%;
+  margin: 40px 0;
   border-collapse: collapse;
-  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .fixed-incomes-table th, .fixed-incomes-table td {
+  padding: 10px;
+  text-align: center;
   border: 1px solid #ddd;
-  padding: 8px;
 }
 
 .fixed-incomes-table th {
-  background-color: #f4f4f4;
+  background-color: #f4d03f;
+  color: white;
+}
+
+.fixed-incomes-table td {
+  background-color: #f9f9f9;
+  white-space: nowrap; /* Prevent buttons from wrapping */
+}
+
+/* Add spacing between buttons */
+.fixed-incomes-table td button {
+  margin-right: 8px; /* Space between buttons */
+  display: inline-block; /* Ensure they stay in line */
+}
+
+.fixed-incomes-table td button:last-child {
+  margin-right: 0; /* Remove margin for last button */
+}
+
+.fixed-incomes-table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 .update-btn {
@@ -35,6 +67,7 @@
   padding: 5px 10px;
   border: none;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .delete-btn {
@@ -43,6 +76,7 @@
   padding: 5px 10px;
   border: none;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .popup-form {
@@ -56,8 +90,44 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.popup-form input, .popup-form textarea, .popup-form select {
+.popup-form input,
+.popup-form textarea,
+.popup-form select {
   width: 100%;
   padding: 8px;
   margin: 5px 0;
+}
+
+button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d9534f;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .fixed-incomes-table {
+    font-size: 14px;
+  }
+
+  .fixed-incomes-table th,
+  .fixed-incomes-table td {
+    padding: 8px;
+  }
+
+  .add-btn {
+    width: 120px;
+  }
+
+  .fixed-incomes-table td button {
+    display: block; /* Stack buttons on smaller screens */
+    width: 100%;
+    margin: 5px 0;
+  }
 }

@@ -66,6 +66,7 @@ const CategoryManager = () => {
 
     // Delete a category
     const handleDeleteCategory = async (id) => {
+        if (window.confirm("Are you sure you want to delete this category?")){
         console.log("Delete button clicked for category ID:", id);  // Debugging line
         try {
             await axios.delete(`http://localhost:4001/api/category/categories/${id}`);
@@ -73,6 +74,7 @@ const CategoryManager = () => {
         } catch (error) {
             console.error("Error deleting category:", error);
         }
+    }
     };
 
     // Handle edit click
@@ -106,8 +108,8 @@ const CategoryManager = () => {
                 {categories.map((category) => (
                     <li key={category.id}>
                         <span>{category.name}</span>
-                        <button className="edit-btn" onClick={() => handleEditClick(category)}>Edit</button>
-                        <button className="delete-btn" onClick={() => handleDeleteCategory(category.id)}>Delete</button>
+                       <span > <button className="edit-btn" onClick={() => handleEditClick(category)}>Edit</button>
+                        <button className="delete-btn" onClick={() => handleDeleteCategory(category.id)}>Delete</button></span>
                     </li>
                 ))}
             </ul>

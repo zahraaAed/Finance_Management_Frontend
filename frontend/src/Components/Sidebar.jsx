@@ -137,7 +137,7 @@ const Sidebar = () => {
               {isExpenseOpen && (
                 <ul className="dropdown">
                   <li>
-                    <Link to="expense/fixed" className="sidebar-item">Fixed Transactions</Link>
+                    <Link to="/fixedexpense" className="sidebar-item">Fixed Transactions</Link>
                   </li>
                   <li>
                     <Link to="expense/recurring" className="sidebar-item">Recurring Transactions</Link>

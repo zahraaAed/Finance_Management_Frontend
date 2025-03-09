@@ -10,7 +10,7 @@ import CategoryManager from './Pages/categories/category';
 import ReportChart from './Pages/Report/ReportChart';
 import Goals from './Pages/ProfitGoals/Goals';
 import ProfitGoalsPieChart from './Components/GoalsChart';
-
+import FixedExpenses from './Pages/fixedexpense/fixedexpense';
 
 const App = () => {
   return (
@@ -25,6 +25,7 @@ const App = () => {
             <Route path="/users" element={<Users />} />
             <Route path='/report' element={<ReportChart/>}/>
             <Route path='/fixedincome' element={<FixedIncomes/>}/>
+            <Route path='/fixedexpense' element={<FixedExpenses/>}/>
             <Route path='/categories' element={<CategoryManager/>}/>
             <Route path='/goals' element={<Goals/>}/>
             <Route path='/chart' element={<ProfitGoalsPieChart/>}/>

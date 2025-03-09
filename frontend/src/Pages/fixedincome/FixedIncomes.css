@@ -110,6 +110,7 @@ button:hover {
   background-color: #d9534f;
 }
 
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .fixed-incomes-table {

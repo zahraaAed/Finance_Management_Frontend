@@ -179,3 +179,24 @@ justify-content: center;
 .chart h2 {
   margin-bottom: 40px;
 }
+.buttons{
+  display: flex;
+  gap: 20px;
+}
+.edit-button{
+  
+  border: none;
+  cursor: pointer;
+  background-color: #607789;
+  font-size: 16px; /* Adjust size as needed */
+}
+.delete-button{
+  background-color: #d9534f;
+}
+.edit-button:hover {
+  background-color: blue; /* Example hover color */
+}
+
+.delete-button:hover {
+  background-color: red; /* Example hover color */
+}

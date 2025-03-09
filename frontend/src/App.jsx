@@ -11,6 +11,7 @@ import ReportChart from './Pages/Report/ReportChart';
 import Goals from './Pages/ProfitGoals/Goals';
 import ProfitGoalsPieChart from './Components/GoalsChart';
 
+import Dashboard from './Pages/Dashboard';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path='/categories' element={<CategoryManager/>}/>
             <Route path='/goals' element={<Goals/>}/>
             <Route path='/chart' element={<ProfitGoalsPieChart/>}/>
+            <Route path='/dashboard' element={<Dashboard/>}/>
       
           </Route>
         </Routes>

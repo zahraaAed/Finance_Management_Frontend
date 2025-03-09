@@ -3,18 +3,45 @@ import axios from "axios";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import "./GoalsChart.css";
 
-const COLORS = ["#607789", "#1b2028", "#f4d03f", "red"];
-
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const ProfitGoalsPieChart = () => {
   const [data, setData] = useState([]);
   const [goal, setGoal] = useState(5000);
-  const [timeFilter, setTimeFilter] = useState("monthly");
-  const [goalFilter, setGoalFilter] = useState("all");
+  const [timeFilter, setTimeFilter] = useState("weekly");
+
+  const filterData = (rawData) => {
+    return rawData.map(item => {
+      let amount = item.amount;
+      
+      switch (timeFilter) {
+        case "weekly":
+          // Convert monthly amounts to weekly
+          amount = item.type === "expense"
+            ? -Math.abs(amount / 4)
+            : amount / 4;
+          break;
+        case "yearly":
+          // Convert monthly amounts to yearly
+          amount = item.type === "expense"
+            ? -Math.abs(amount * 12)
+            : amount * 12;
+          break;
+        default:
+          // Monthly stays unchanged
+          amount = item.type === "expense"
+            ? -Math.abs(amount)
+            : amount;
+      }
+      
+      return { ...item, amount };
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [fixedIncomeRes, fixedExpenseRes, recurringIncomeRes, recurringExpenseRes, goalRes] = await Promise.all([
+        const [fixedIncomeRes, fixedExpenseRes, recurringIncomeRes, 
+               recurringExpenseRes, goalRes] = await Promise.all([
           axios.get("http://localhost:4001/api/fixedIncome/fixed-incomes"),
           axios.get("http://localhost:4001/api/fixedExpense/fixed-expenses"),
           axios.get("http://localhost:4001/api/recuringIncome/recurring-incomes"),
@@ -22,22 +49,40 @@ const ProfitGoalsPieChart = () => {
           axios.get("http://localhost:4001/api/profitGoal/get/all")
         ]);
 
+        // Combine raw data
         let combinedData = [
-          ...fixedIncomeRes.data.data.map(item => ({ amount: item.amount, type: "income" })),
-          ...recurringIncomeRes.data.data.map(item => ({ amount: item.amount, type: "income" })),
-          ...fixedExpenseRes.data.data.map(item => ({ amount: -Math.abs(item.amount), type: "expense" })),
-          ...recurringExpenseRes.data.data.map(item => ({ amount: -Math.abs(item.amount), type: "expense" }))
+          ...fixedIncomeRes.data.data.map(item => ({
+            amount: item.amount,
+            type: "income",
+            status: item.status || "pending"
+          })),
+          ...recurringIncomeRes.data.data.map(item => ({
+            amount: item.amount,
+            type: "income",
+            status: item.status || "pending"
+          })),
+          ...fixedExpenseRes.data.data.map(item => ({
+            amount: item.amount,
+            type: "expense",
+            status: item.status || "pending"
+          })),
+          ...recurringExpenseRes.data.data.map(item => ({
+            amount: item.amount,
+            type: "expense",
+            status: item.status || "pending"
+          }))
         ];
 
-        if (goalFilter !== "all") {
-          combinedData = combinedData.filter(item => item.status?.toLowerCase() === goalFilter);
-        }
+        // Calculate total goal
+        const totalGoal = goalRes.data.reduce(
+          (sum, g) => sum + g.remainingProfit, 
+          0
+        );
 
-        let totalGoal = goalRes.data
-          .filter(g => goalFilter === "all" || g.status.toLowerCase() === goalFilter)
-          .reduce((sum, g) => sum + g.remainingProfit, 0);
+        // Apply time filter
+        const filteredData = filterData(combinedData);
 
-        setData(combinedData);
+        setData(filteredData);
         setGoal(totalGoal || 5000);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -45,26 +90,15 @@ const ProfitGoalsPieChart = () => {
     };
 
     fetchData();
-  }, [goalFilter, timeFilter]);
+  }, [timeFilter]);
 
-  const filterData = (data) => {
-    switch (timeFilter) {
-      case "weekly":
-        return data.map(d => ({ ...d, amount: d.amount / 4 }));
-      case "yearly":
-        return data.map(d => ({ ...d, amount: d.amount * 12 }));
-      default:
-        return data;
-    }
-  };
-
-  const filteredData = filterData(data);
-
-  const totalIncome = filteredData.filter(d => d.amount > 0).reduce((sum, d) => sum + d.amount, 0);
-  const totalExpense = filteredData.filter(d => d.amount < 0).reduce((sum, d) => sum + Math.abs(d.amount), 0);
+  // Calculate totals based on filtered data
+  const totalIncome = data.filter(d => d.amount > 0).reduce((sum, d) => sum + d.amount, 0);
+  const totalExpense = data.filter(d => d.amount < 0).reduce((sum, d) => sum + Math.abs(d.amount), 0);
   const achievement = totalIncome - totalExpense;
-  const total = totalIncome + totalExpense + goal + achievement;
 
+  // Prepare chart data
+  const total = totalIncome + totalExpense + goal + achievement;
   const chartData = [
     { name: "Income", value: (totalIncome / total) * 100 },
     { name: "Expense", value: (totalExpense / total) * 100 },
@@ -74,27 +108,46 @@ const ProfitGoalsPieChart = () => {
 
   return (
     <div className="pie-chart-container">
+      {/* Time period filters */}
       <div className="filter-buttons">
-        <button onClick={() => setTimeFilter("weekly")} className={timeFilter === "weekly" ? "active" : ""}>Weekly</button>
-        <button onClick={() => setTimeFilter("monthly")} className={timeFilter === "monthly" ? "active" : ""}>Monthly</button>
-        <button onClick={() => setTimeFilter("yearly")} className={timeFilter === "yearly" ? "active" : ""}>Yearly</button>
+        <button onClick={() => setTimeFilter("weekly")} 
+                className={timeFilter === "weekly" ? "active" : ""}>
+          Weekly
+        </button>
+        <button onClick={() => setTimeFilter("monthly")} 
+                className={timeFilter === "monthly" ? "active" : ""}>
+          Monthly
+        </button>
+        <button onClick={() => setTimeFilter("yearly")} 
+                className={timeFilter === "yearly" ? "active" : ""}>
+          Yearly
+        </button>
       </div>
 
-      <div className="goal-filter-buttons">
-        <button onClick={() => setGoalFilter("all")} className={goalFilter === "all" ? "active" : ""}>All</button>
-        <button onClick={() => setGoalFilter("achieved")} className={goalFilter === "achieved" ? "active" : ""}>Achieved</button>
-        <button onClick={() => setGoalFilter("missed")} className={goalFilter === "missed" ? "active" : ""}>Missed</button>
-        <button onClick={() => setGoalFilter("pending")} className={goalFilter === "pending" ? "active" : ""}>Pending</button>
-      </div>
-
-      <div className="chart">
-        <h2>Income & Expenses</h2>
-        <PieChart width={350} height={450} margin={{ top: 50 }}>
-          <Pie data={chartData} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value" label>
-            {chartData.map((_, index) => <Cell key={`cell-${index}`} fill={COLORS[index]} />)}
+      {/* Chart display */}
+      <div className="chart-report">
+       
+        <PieChart width={350} height={450} margin={{ top: 0 }} >
+          <Pie
+            data={chartData}
+            cx="50%"
+            cy="50%"
+            outerRadius={100}
+            fill="#8884d8"
+            dataKey="value"
+            label
+          >
+            {chartData.map((_, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index]} />
+            ))}
           </Pie>
           <Tooltip />
-          <Legend layout="vertical" align="center" verticalAlign="bottom" wrapperStyle={{ paddingTop: 60 }} />
+          <Legend 
+            layout="vertical" 
+            align="center" 
+            verticalAlign="bottom" 
+            wrapperStyle={{ paddingTop: 60 }} 
+          />
         </PieChart>
       </div>
     </div>

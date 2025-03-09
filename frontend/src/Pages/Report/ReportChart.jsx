@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Line, Bar } from "react-chartjs-2";
 import 'chart.js/auto';
 import './Reports.css';
+import ProfitGoalsPieChart from '../../Components/GoalsChart';
 
 export default function ReportComponent() {
   const [reports, setReports] = useState([]);
@@ -120,14 +121,15 @@ export default function ReportComponent() {
       {
         label: "Total Income",
         data: sortedDates.map(date => groupedByDate[date].income || 0), // Map income values
-        borderColor: "blue",
+        borderColor: "#607789",
         borderWidth: 2,
         fill: false,
+      
       },
       {
         label: "Total Expenses",
         data: sortedDates.map(date => groupedByDate[date].expense || 0), // Map expense values
-        borderColor: "red",
+        borderColor: "#d9534f",
         borderWidth: 2,
         fill: false,
       }
@@ -144,12 +146,12 @@ export default function ReportComponent() {
       {
         label: "Total Income",
         data: Object.values(groupedTransactions).map(item => item.income),
-        backgroundColor: "green",
+        backgroundColor: "rgb(0, 136, 254)",
       },
       {
         label: "Total Expenses",
         data: Object.values(groupedTransactions).map(item => item.expense),
-        backgroundColor: "orange",
+        backgroundColor: "#f4d03f",
       }
     ]
   };
@@ -170,8 +172,10 @@ export default function ReportComponent() {
             <Bar data={barChartData} />
           </div>
 </div>
+
+<div className='chart-section'>
           <div className="table-container">
-            <h3>Detailed Transactions</h3>
+            <h2>Detailed Transactions</h2>
             <table className='transaction-table'>
               <thead>
                 <tr>
@@ -198,6 +202,8 @@ export default function ReportComponent() {
                 ))}
               </tbody>
             </table>
+          </div>
+          <ProfitGoalsPieChart/>
           </div>
         </>
       )}

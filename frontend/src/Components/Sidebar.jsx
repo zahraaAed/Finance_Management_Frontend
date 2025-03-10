@@ -115,7 +115,7 @@ const Sidebar = () => {
                     <Link to="/fixedincome" className="sidebar-item">Fixed Transactions</Link>
                   </li>
                   <li>
-                    <Link to="income/recurring" className="sidebar-item">Recurring Transactions</Link>
+                    <Link to="/recurringincome" className="sidebar-item">Recurring Transactions</Link>
                   </li>
                 </ul>
               )}

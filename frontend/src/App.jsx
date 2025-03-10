@@ -13,7 +13,7 @@ import ProfitGoalsPieChart from './Components/GoalsChart';
 import FixedExpenses from './Pages/fixedexpense/fixedexpense';
 import Dashboard from './Pages/Dashboard';
 import PrivateRoute from './Auth/privateRoute';
-
+import RecurringIncomes from './Pages/recurringincome/recurringincome';
 const App = () => {
   return (
     <Router>
@@ -34,6 +34,7 @@ const App = () => {
             <Route path='/goals' element={<Goals/>}/>
             <Route path='/chart' element={<ProfitGoalsPieChart/>}/>
             <Route path='/dashboard' element={<PrivateRoute element={Dashboard} />} />
+            <Route path='/recurringincome' element={<RecurringIncomes/>}/>
           </Route>
         </Routes>
       </div>
